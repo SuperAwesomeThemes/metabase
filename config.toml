@@ -1,17 +1,15 @@
 theme = "metabase"
 
 [params]
-  description = "Text about my cool site"
-  images = ["site-image.png"]
-  title = "My cool site"
+	description = "Text about my cool site"
+	images = ["site-image.png"]
+	title = "My cool site"
+	mainSections = ["posts"]
 
 [Taxonomies]
     category = "categories"
 	series = "series"
     tag = "tags"
-
-[Params]
-    mainSections = ["posts"]
 	
 [social]
 	twitter = ""

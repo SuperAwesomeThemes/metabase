@@ -1,0 +1,103 @@
+{
+	"name": "{{- .Site.Title -}}",
+	"short_name": "{{- .Site.Title -}}",
+	"lang": "{{site.LanguageCode}}",
+{{ with $.Site.Params.description }}
+	"description": "{{- . -}}",
+{{ end }}
+	{{ with index $.Site.Data.manifests.webmanifest "theme-color" }}
+	"theme_color": "{{- . -}}",
+	{{ end }}
+	{{ with index $.Site.Data.manifests.webmanifest "background-color" }}
+	"background_color": "{{- . -}}",
+	{{ end }}
+	"display": "standalone".
+	"start_url": "/",
+	"scope": "/",
+	"icons": [
+{{ $i := 0 }}
+{{ range $favicon := $.Site.Data.icons }}
+	{{ range $icon := $favicon.icons }}
+		{{ if (fileExists $icon.file) }}
+			{{ $image_ext := path.Ext $icon.file }}
+			{{ if eq $image_ext "ico" }}
+				{{ $image_ext := "x-icon" }}
+			{{ else if eq $image_ext "svg" }}
+				{{ $image_ext := "svg+xml" }}
+			{{ else if eq $image_ext "jpg" }}
+				{{ $image_ext := "jpeg" }}
+			{{ else if eq $image_ext "tif" }}
+				{{ $image_ext := "tiff" }}
+			{{ end }}
+			
+			{{- if ne $i 0 }}
+		,
+			{{ end }}
+			{{ $i = $i + 1 }}
+		{
+			"src": "{{- $icon.file -}}",
+		{{ with $icon.size }}
+			"sizes": "{{- . -}}",
+		{{ end }}
+			"type": "image/{{- $image_ext -}}"
+		}
+		{{ end }}
+	{{ end }}
+{{ end }}
+	],
+	"categories": [
+{{ $i := 0 }}
+{{ range $categories := $.Site.Data.manifests.webmanifest.categories }}
+	{{- if ne $i 0 }}
+		,
+	{{ end }}
+	{{ $i = $i + 1 }}
+	 "{{- $categories -}}"
+{{ end }}
+	],
+	"shortcuts" : [
+{{ $oi := 0 }}
+{{ range $menue := $.Site.Menus }}
+	{{- if ne $oi 0 }}
+	,
+	{{ end }}
+	{{ $oi = $oi + 1 }}
+	{
+		"name": "{{- $menue.name -}}",
+		"url": "{{- $menue.url -}}",
+		"description": "{{- $menue.title -}}",
+		{{ with .Site.GetPage $menue.url }}
+		"icons": [
+			{{ $ii := 0 }}
+			{{ range $icon := .images }}
+				{{ if (fileExists $icon.file) }}
+					{{ $image_ext := path.Ext $icon.file }}
+					{{ if eq $image_ext "ico" }}
+						{{ $image_ext = "x-icon" }}
+					{{ else if eq $image_ext "svg" }}
+						{{ $image_ext = "svg+xml" }}
+					{{ else if eq $image_ext "jpg" }}
+						{{ $image_ext = "jpeg" }}
+					{{ else if eq $image_ext "tif" }}
+						{{ $image_ext = "tiff" }}
+					{{ end }}
+				
+					{{- if ne $ii 0 }}
+			,
+					{{ end }}
+					{{ $ii = $ii + 1 }}
+			{ 
+				"src": "{{- $icon.file -}}", 
+				{{ with $icon.size }}
+				"sizes": "{{- . -}}",
+				{{ end }}
+				"type": "image/{{- $image_ext -}}" 
+			}
+				{{ end }}
+			{{ end }}
+		]
+		{{ end }}
+	}
+{{ end }}
+	]
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+	  {{ range $val := (index $.Site.Data.icons "msapplication").icons }}
+		{{ if ne $val "TileImage" }}
+      <{{- $val.type }} src="{{- $val.file -}}" />
+		{{ end }}
+	  {{ end }}
+	  {{ with index (index $.Site.Data.manifests "msapplication-config") "tile-color" }}
+      <TileColor>{{- . -}}</TileColor>
+	  {{ end }}
+    </tile>
+  </msapplication>
+</browserconfig>

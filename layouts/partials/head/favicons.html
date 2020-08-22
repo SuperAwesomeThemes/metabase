@@ -1,0 +1,37 @@
+{{ range $favicon := $.Site.Data.icons }}
+	{{ range $type := $favicon.types }}
+		{{ range $icon := $favicon.icons }}
+			{{ if (fileExists $icon.file) }}
+				{{ if eq $type "tile" }}
+<meta name="msapplication-{{ $icon.type }}" content="{{- $icon.file -}}" />
+				{{ else }}
+					{{ $image_ext := path.Ext $icon.file }}
+					{{ if eq $image_ext "ico" }}
+						{{ $image_ext := "x-icon" }}
+					{{ else if eq $image_ext "svg" }}
+						{{ $image_ext := "svg+xml" }}
+					{{ else if eq $image_ext "jpg" }}
+						{{ $image_ext := "jpeg" }}
+					{{ else if eq $image_ext "tif" }}
+						{{ $image_ext := "tiff" }}
+					{{ end }}
+<link 
+	rel="{{- $type -}}"
+	{{ with $icon.size }}
+	sizes="{{- . -}}"
+	{{ end }}
+	href="{{- $icon.file -}}"
+	type="image/{{- $image_ext -}}"
+	{{ with $icon.color }}
+	color="{{- . -}}"
+	{{ end }}
+/>
+				{{ end }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ with index (index $.Site.Data.manifests "msapplication-config") "tile-color" }}
+<meta name="msapplication-TileColor" content="{{- . -}}" />
+{{ end }}

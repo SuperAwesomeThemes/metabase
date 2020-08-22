@@ -1,0 +1,35 @@
+theme = "metabase"
+
+[params]
+  description = "Text about my cool site"
+  images = ["site-image.png"]
+  title = "My cool site"
+
+[Taxonomies]
+    category = "categories"
+	series = "series"
+    tag = "tags"
+
+[Params]
+    mainSections = ["posts"]
+	
+[social]
+	twitter = ""
+
+[Permalinks]
+    post = "/:sections/:filename/:slug/"
+
+[[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+
+[[menu.main]]
+    name = "Contact"
+    url = "/pages/contact/"
+    weight = 2
+
+[[menu.main]]
+    name = "About"
+    url = "/pages/about/"
+    weight = 3

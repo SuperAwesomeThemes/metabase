@@ -1,0 +1,15 @@
+{{ $msconfig := index $.Site.Data.manifests "msapplication-config" }}
+{{ if ne $msconfig nil }}
+	{{ if (fileExists $msconfig.file) }}
+		{{ $file := resources.Get $msconfig.file | resources.ExecuteAsTemplate ( .File.LogicalName $msconfig.file ) . }}
+<meta name="msapplication-config" content="{{- . -}}" />
+	{{ end }}
+{{ end }}
+
+{{ $webmaifest := index $.Site.Data.manifests "webmanifest" }}
+{{ if ne $webmaifest nil }}
+	{{ if (fileExists $webmaifest.file) }}
+		{{ $file := resources.Get $webmaifest.file | resources.ExecuteAsTemplate ( .File.LogicalName $webmaifest.file ) . }}
+<link rel="manifest" href="{{- . -}}">
+	{{ end }}
+{{ end }}

@@ -1,0 +1,12 @@
+{
+	"msapplication-config": {
+		"file": "browserconfig.xml",
+		"tile-color": "#FFFFFF"
+	},
+	"webmanifest": { 
+		"file": "site.webmanifest", 
+		"theme-color": "#ffffff", 
+		"background-color": "#ffffff",
+		"categories": ["books", "education"]
+	}
+}

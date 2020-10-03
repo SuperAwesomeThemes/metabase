@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ default .Site.LanguageCode .Language.Lang }}">
+	{{ block "head" . }}{{ partial "head/head.html" . }}{{ end }}
+    <body>
+		{{ block "header" . }}{{ partial "header/header.html" . }}{{ end }}
+		{{ block "nav" . }}{{ partial "elements/nav.html" . }}{{ end }}
+		<main role="main">
+			{{ block "toc" . }}{{ partial "elements/toc.html" . }}{{ end }}
+			{{ block "content" . }}{{ partial "elements/content.html" . }}{{ end }}
+		</main>
+		{{ block "listing" . }}{{ partial "elements/listing.html" . }}{{ end }}
+		{{ block "footer" . }}{{ partial "footer/footer.html" . }}{{ end }}
+		{{ block "foot" . }}{{ partial "foot/foot.html" . }}{{ end }}
+    </body>
+</html>

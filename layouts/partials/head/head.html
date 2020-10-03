@@ -1,0 +1,11 @@
+<head>
+	{{ partial "head/favicons.html" . }}
+	{{ partial "head/metadata.html" . }}
+	{{ partial "head/manifests.html" . }}
+	{{ partial "head/prerender.html" . }}
+	{{ if .IsHome }}
+	<title>{{ default .Title .Site.Title }}{{ with $.Param "author" }} - {{.}}{{ end }}</title>
+	{{ else }}
+	<title>{{ .Title }}: {{ .Site.Title }}{{ with $.Param "author" }} - {{.}}{{ end }}</title>
+	{{ end }}
+</head>

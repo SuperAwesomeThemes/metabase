@@ -1,0 +1,12 @@
+name = "metabase"
+license = "MIT"
+licenselink = "https://github.com/SuperAwesomeThemes/metabase/LICENSE.md"
+description = "Simple Blog Theme"
+homepage = "https://github.com/SuperAwesomeThemes/metabase"
+tags = ["syntax highlighting", "maxthjax", "rss", "comments", "google analytics"]
+features = ["syntax highlighting", "maxthjax", "rss", "comments", "google analytics"]
+min_version = 0.75.1
+
+[author]
+  name = "SuperAwesomeThemes"
+  homepage = "https://github.com/SuperAwesomeThemes/"

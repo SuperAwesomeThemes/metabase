@@ -1,0 +1,6 @@
+<div class="listing">
+{{ range (.Paginate .RegularPagesRecursive).Pages }}
+	{{ .Render "summary" }}
+{{ end }}
+{{ template "_internal/pagination.html" . }}
+</div>
